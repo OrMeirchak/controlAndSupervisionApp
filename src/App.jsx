@@ -52,6 +52,10 @@ function App() {
 
   return (
     <div className="app">
+      <header className="app-header">
+        <div className="logo-placeholder">Logo</div>
+        <h1 className="app-title">ResQ-AI</h1>
+      </header>
       <div className="sidebar emergency-bar">
         {top6Items.map(item => (
           <div key={item.id} className="emergency-item" onClick={() => setFocusedLocation(item.location)}>

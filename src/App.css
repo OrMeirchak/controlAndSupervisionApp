@@ -3,6 +3,7 @@
   width: 100vw;
   overflow: hidden;
   position: relative;
+  padding-top: 72px;
 }
 
 .map-container {
@@ -14,8 +15,8 @@
 .overlay.rescue-bar {
   position: absolute;
   right: 0;
-  top: 0;
-  height: 100%;
+  top: 72px;
+  height: calc(100% - 72px);
   width: 170px;
   display: flex;
   flex-direction: column;
@@ -58,8 +59,8 @@
 .sidebar.emergency-bar {
   position: absolute;
   left: 0;
-  top: 0;
-  height: 100%;
+  top: 72px;
+  height: calc(100% - 72px);
   width: 320px;
   z-index: 1000;
   padding: 24px 16px;
@@ -141,4 +142,61 @@
   margin-top: 4px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   text-align: center;
+}
+
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(255,255,255,0.85) 0%, rgba(230,244,255,0.75) 100%);
+  backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10);
+  z-index: 2000;
+  padding: 0 40px;
+  border-bottom: 1.5px solid rgba(30, 136, 229, 0.08);
+}
+
+.logo-placeholder {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #1976d2;
+  margin-right: 24px;
+  box-shadow: 0 2px 8px 0 rgba(30,136,229,0.08);
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+
+.logo-placeholder:hover {
+  box-shadow: 0 4px 16px 0 rgba(30,136,229,0.16);
+  transform: scale(1.05);
+}
+
+.app-header::after {
+  content: '';
+  display: block;
+  height: 40px;
+  width: 2px;
+  background: linear-gradient(180deg, #90caf9 0%, #1976d2 100%);
+  margin-left: 24px;
+  margin-right: 24px;
+  border-radius: 1px;
+}
+
+.app-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #1565c0;
+  letter-spacing: 1.5px;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  text-shadow: 0 2px 8px rgba(30,136,229,0.08);
 }
