@@ -5,7 +5,6 @@ import { ICONS } from "../constants";
 const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices }) => (
   <div
     className={`emergency-item`}
-    onClick={onClick}
   >
     <button
       className="emergency-action-btn"
