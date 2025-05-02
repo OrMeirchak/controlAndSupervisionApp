@@ -22,6 +22,7 @@ function App() {
   const [emergencyItems, setEmergencyItems] = useState([]);
   const [order, setOrder] = useState([]);
   const [focusedLocation, setFocusedLocation] = useState(null);
+  const [showAllEmergencies, setShowAllEmergencies] = useState(false);
   const socketRef = useRef(null);
 
   useEffect(() => {
@@ -55,7 +56,33 @@ function App() {
       <header className="app-header">
         <div className="logo-placeholder">Logo</div>
         <h1 className="app-title">ResQ-AI</h1>
+        <button className="all-emergency-btn" onClick={() => setShowAllEmergencies(true)}>All Emergency</button>
       </header>
+      {showAllEmergencies && (
+        <div className="emergency-modal-overlay" onClick={() => setShowAllEmergencies(false)}>
+          <div className="emergency-modal" onClick={e => e.stopPropagation()}>
+            <div className="emergency-modal-header">
+              <span>All Emergencies</span>
+              <button className="close-modal-btn" onClick={() => setShowAllEmergencies(false)}>&times;</button>
+            </div>
+            <div className="emergency-modal-list">
+              {emergencyItems.length === 0 ? (
+                <div className="empty-list">No emergencies</div>
+              ) : (
+                emergencyItems.map(item => (
+                  <div key={item.id} className="emergency-modal-item">
+                    <img src={getIconSrc(item.emergencyType)} alt="icon" />
+                    <div>
+                      <div className="modal-item-type">{item.type}</div>
+                      <div className="modal-item-summary">{item.summary}</div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+      )}
       <div className="sidebar emergency-bar">
         {top6Items.map(item => (
           <div key={item.id} className="emergency-item" onClick={() => setFocusedLocation(item.location)}>

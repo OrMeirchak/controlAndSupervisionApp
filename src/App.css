@@ -200,3 +200,112 @@
   font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
   text-shadow: 0 2px 8px rgba(30,136,229,0.08);
 }
+
+.all-emergency-btn {
+  margin-left: auto;
+  padding: 10px 22px;
+  background: linear-gradient(90deg, #1976d2 0%, #64b5f6 100%);
+  color: #fff;
+  font-size: 1.08rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px 0 rgba(30,136,229,0.10);
+  cursor: pointer;
+  transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
+}
+.all-emergency-btn:hover {
+  background: linear-gradient(90deg, #1565c0 0%, #42a5f5 100%);
+  box-shadow: 0 4px 16px 0 rgba(30,136,229,0.16);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.emergency-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(30, 42, 60, 0.32);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emergency-modal {
+  background: rgba(255,255,255,0.98);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(30,136,229,0.18);
+  min-width: 340px;
+  max-width: 96vw;
+  max-height: 80vh;
+  padding: 0 0 18px 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.emergency-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px 12px 24px;
+  border-bottom: 1.5px solid #e3f2fd;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1976d2;
+  background: linear-gradient(90deg, #e3f2fd 0%, #bbdefb 100%);
+}
+
+.close-modal-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #1976d2;
+  cursor: pointer;
+  transition: color 0.18s;
+  margin-left: 12px;
+}
+.close-modal-btn:hover {
+  color: #d32f2f;
+}
+
+.emergency-modal-list {
+  padding: 16px 24px 0 24px;
+  overflow-y: auto;
+  max-height: 56vh;
+}
+
+.emergency-modal-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e3f2fd;
+}
+.emergency-modal-item:last-child {
+  border-bottom: none;
+}
+.emergency-modal-item img {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #f5faff;
+  box-shadow: 0 1px 4px 0 rgba(30,136,229,0.08);
+}
+.modal-item-type {
+  font-weight: 600;
+  color: #1976d2;
+  font-size: 1.08rem;
+}
+.modal-item-summary {
+  color: #333;
+  font-size: 0.98rem;
+}
+.empty-list {
+  text-align: center;
+  color: #888;
+  padding: 32px 0;
+  font-size: 1.1rem;
+}
