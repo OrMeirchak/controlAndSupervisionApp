@@ -1,0 +1,33 @@
+.overlay.rescue-bar {
+  position: absolute;
+  right: 0;
+  top: 72px;
+  height: calc(100% - 72px);
+  width: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 0;
+  z-index: 1000;
+}
+
+.rescue-service {
+  padding: 14px 0;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  margin: 8px 0;
+  border-radius: 12px;
+  font-size: 1.08rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+  width: 80%;
+  background: linear-gradient(90deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.04) 100%);
+  border: 1.5px solid rgba(255,255,255,0.18);
+  transition: transform 0.16s, box-shadow 0.16s;
+}
+
+.rescue-service:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.16);
+} 
