@@ -55,6 +55,8 @@ function App() {
         onClose={() => setShowAllEmergencies(false)}
         emergencyItems={emergencyItems}
         getIconSrc={getIconSrc}
+        rescueServices={rescueServices}
+        onActionClick={setFocusedLocation}
       />
       <EmergencySidebar
         items={top6Items}
