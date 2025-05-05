@@ -1,5 +1,5 @@
 .sidebar.emergency-bar {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 72px;
   height: calc(100% - 72px);

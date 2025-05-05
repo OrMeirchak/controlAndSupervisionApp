@@ -35,11 +35,11 @@ function App() {
     return () => socketRef.current?.close();
   }, []);
 
-  const orderedItems = order
-    .map(id => emergencyItems.find(item => item.id === id))
-    .filter(Boolean);
+  // const orderedItems = order
+  //   .map(id => emergencyItems.find(item => item.id === id))
+  //   .filter(Boolean);
 
-  const top6Items = orderedItems.slice(0, 6);
+  // const top6Items = orderedItems.slice(0, 6);
 
   const getIconSrc = (type) => ICONS[type] || "";
   const getIcon = (type) => {
@@ -59,7 +59,7 @@ function App() {
         onActionClick={setFocusedLocation}
       />
       <EmergencySidebar
-        items={top6Items}
+        items={emergencyItems}
         onCardClick={setFocusedLocation}
         getIconSrc={getIconSrc}
         rescueServices={rescueServices}
@@ -67,7 +67,7 @@ function App() {
       <MapView
         center={[32.0853, 34.7818]}
         zoom={13}
-        orderedItems={orderedItems}
+        orderedItems={emergencyItems}
         focusedLocation={focusedLocation}
         getIcon={getIcon}
       />

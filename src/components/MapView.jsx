@@ -21,16 +21,18 @@ const MapView = ({ center, zoom, orderedItems, focusedLocation, getIcon }) => (
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     />
     <FlyToLocation position={focusedLocation} />
-    {orderedItems.map(item => (
-      <Marker
-        key={item.id}
-        position={item.location}
-        icon={L.divIcon({
-          className: "custom-div-icon",
-          html: `<div class='label-container'>${getIcon(item.emergencyType)}<div class='label-text'><strong>${item.type}</strong><br/>${item.summary}</div></div>`
-        })}
-      />
-    ))}
+    {orderedItems
+      .filter(item => Array.isArray(item.location) && item.location.length === 2 && item.location.every(coord => typeof coord === 'number'))
+      .map(item => (
+        <Marker
+          key={item.id}
+          position={item.location}
+          icon={L.divIcon({
+            className: "custom-div-icon",
+            html: `<div class='label-container'>${getIcon(item.emergencyType)}<div class='label-text'><strong>${item.type}</strong><br/>${item.summary}</div></div>`
+          })}
+        />
+      ))}
   </MapContainer>
 );
 
