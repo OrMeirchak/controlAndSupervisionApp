@@ -56,11 +56,17 @@ function App() {
         emergencyItems={emergencyItems}
         getIconSrc={getIconSrc}
         rescueServices={rescueServices}
-        onActionClick={setFocusedLocation}
+        onActionClick={location => {
+          setFocusedLocation(null);
+          setTimeout(() => setFocusedLocation(location), 0);
+        }}
       />
       <EmergencySidebar
         items={emergencyItems}
-        onCardClick={setFocusedLocation}
+        onCardClick={location => {
+          setFocusedLocation(null);
+          setTimeout(() => setFocusedLocation(location), 0);
+        }}
         getIconSrc={getIconSrc}
         rescueServices={rescueServices}
       />
