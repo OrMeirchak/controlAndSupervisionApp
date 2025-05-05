@@ -27,7 +27,7 @@ const EmergencyModal = ({ open, onClose, emergencyItems, getIconSrc, rescueServi
                 </button>
                 <img src={getIconSrc(item.emergencyType)} alt="icon" />
                 <div>
-                  <div className="modal-item-type">{item.type}</div>
+                  <div className="modal-item-type">{item.emergencyType}</div>
                   <div className="modal-item-summary">{item.summary}</div>
                   <div className="dispatched">
                     {(item.recuseServices || []).map(serviceName => {

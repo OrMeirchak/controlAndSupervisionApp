@@ -29,7 +29,7 @@ const MapView = ({ center, zoom, orderedItems, focusedLocation, getIcon }) => (
           position={item.location}
           icon={L.divIcon({
             className: "custom-div-icon",
-            html: `<div class='label-container'>${getIcon(item.emergencyType)}<div class='label-text'><strong>${item.type}</strong><br/>${item.summary}</div></div>`
+            html: `<div class='label-container'>${getIcon(item.emergencyType)}<div class='label-text'><strong>${item.emergencyType}</strong><br/>${item.summary}</div></div>`
           })}
         />
       ))}
