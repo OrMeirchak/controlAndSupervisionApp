@@ -22,7 +22,7 @@ const MapView = ({ center, zoom, orderedItems, focusedLocation, getIcon }) => (
     />
     <FlyToLocation position={focusedLocation} />
     {orderedItems
-      .filter(item => Array.isArray(item.location) && item.location.length === 2 && item.location.every(coord => typeof coord === 'number'))
+      .filter(item => Array.isArray(item.location) && item.location.length === 2)
       .map(item => (
         <Marker
           key={item.id}

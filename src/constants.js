@@ -7,7 +7,7 @@ export const ICONS = {
   "terror attack": "/icons/terror-attack.svg",
   robbery: "/icons/robbery.svg",
   "medical emergency": "/icons/medical-emergency.svg",
-  app: "/icons/app.png",
+  app: "/icons/app.jpg",
   goToLoaction:"/icons/go-to-location.svg",
   fire: "/icons/fire.svg"
 }; 
