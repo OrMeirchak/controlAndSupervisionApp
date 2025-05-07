@@ -9,5 +9,6 @@ export const ICONS = {
   "medical emergency": "/icons/medical-emergency.svg",
   app: "/icons/app.jpg",
   goToLoaction:"/icons/go-to-location.svg",
-  fire: "/icons/fire.svg"
+  fire: "/icons/fire.svg",
+  earthquake: "/icons/earthquake.svg"
 }; 
