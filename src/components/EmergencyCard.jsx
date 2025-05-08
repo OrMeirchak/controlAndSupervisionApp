@@ -19,7 +19,22 @@ const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices }) => (
     <div className="dispatched">
       {item.recuseServices.map(serviceName => {
         const service = rescueServices.find(s => s.name === serviceName);
-        return service ? <div key={service.name} style={{ backgroundColor: service.color }} className="service-dot" /> : null;
+        if (!service) return null;
+        const iconKey = service.name.toLowerCase();
+        const iconSrc = ICONS[iconKey];
+        return iconSrc ? (
+          <img
+            key={service.name}
+            src={iconSrc}
+            alt={service.name}
+            style={{ width: 24, height: 24, marginRight: 4 }}
+          />
+        ) : (
+          <div
+            key={service.name}
+            style={{ backgroundColor: service.color, width: 16, height: 16, borderRadius: '50%', display: 'inline-block', marginRight: 4 }}
+          />
+        );
       })}
     </div>
   </div>

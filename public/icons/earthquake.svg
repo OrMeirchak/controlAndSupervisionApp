@@ -1,0 +1,12 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <g transform="rotate(-15 40 40)">
+    <!-- House Base -->
+    <rect x="25" y="35" width="30" height="30" fill="#b0c4de" stroke="#333" stroke-width="2"/>
+    <!-- Roof -->
+    <polygon points="20,35 40,15 60,35" fill="#708090" stroke="#333" stroke-width="2"/>
+    <!-- Door -->
+    <rect x="37" y="50" width="6" height="15" fill="#333"/>
+  </g>
+  <!-- Ground Crack -->
+  <path d="M10 70 Q20 65, 30 75 Q40 85, 50 70 Q60 55, 70 75" stroke="#000" stroke-width="3" fill="none" stroke-dasharray="4,3"/>
+</svg>
