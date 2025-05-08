@@ -3,7 +3,6 @@ import "./App.css";
 import AppHeader from "./components/AppHeader";
 import EmergencySidebar from "./components/EmergencySidebar";
 import EmergencyModal from "./components/EmergencyModal";
-import RescueBar from "./components/RescueBar";
 import MapView from "./components/MapView";
 import { SERVER_URL, WS_URL, ICONS } from "./constants";
 
@@ -77,7 +76,6 @@ function App() {
         focusedLocation={focusedLocation}
         getIcon={getIcon}
       />
-      <RescueBar rescueServices={rescueServices} />
     </div>
   );
 }
