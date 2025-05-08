@@ -13,6 +13,7 @@ function App() {
   const [focusedLocation, setFocusedLocation] = useState(null);
   const [showAllEmergencies, setShowAllEmergencies] = useState(false);
   const socketRef = useRef(null);
+  const priorities = ["very high", "high", "low"];
 
   useEffect(() => {
     fetch(`${SERVER_URL}/getRecuseServices`)
@@ -40,6 +41,13 @@ function App() {
 
   // const top6Items = orderedItems.slice(0, 6);
 
+  // Sort emergencyItems by urgency
+  const sortedEmergencyItems = [...emergencyItems].sort((a, b) => {
+    const aUrgency = priorities.indexOf(a.urgency);
+    const bUrgency = priorities.indexOf(b.urgency);
+    return aUrgency - bUrgency;
+  });
+
   const getIconSrc = (type) => ICONS[type] || "";
   const getIcon = (type) => {
     const src = getIconSrc(type);
@@ -61,7 +69,7 @@ function App() {
         }}
       />
       <EmergencySidebar
-        items={emergencyItems}
+        items={sortedEmergencyItems}
         onCardClick={location => {
           setFocusedLocation(null);
           setTimeout(() => setFocusedLocation(location), 0);
@@ -72,7 +80,7 @@ function App() {
       <MapView
         center={[32.0853, 34.7818]}
         zoom={13}
-        orderedItems={emergencyItems}
+        orderedItems={sortedEmergencyItems}
         focusedLocation={focusedLocation}
         getIcon={getIcon}
       />
