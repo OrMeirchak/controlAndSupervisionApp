@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./EmergencyCard.css";
 import { ICONS } from "../constants";
 
 const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices }) => {
   const [showMessages, setShowMessages] = useState(false);
+  const messagesDropdownRef = useRef(null);
   // Placeholder messages for demonstration
   const messages = item.messages && Array.isArray(item.messages) && item.messages.length > 0
     ? item.messages
@@ -16,6 +17,18 @@ const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices }) => {
     const d = new Date(iso);
     return d.toLocaleString();
   };
+  useEffect(() => {
+    if (!showMessages) return;
+    function handleClickOutside(event) {
+      if (messagesDropdownRef.current && !messagesDropdownRef.current.contains(event.target)) {
+        setShowMessages(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showMessages]);
   return (
     <div
       className={`emergency-item`}
@@ -42,7 +55,7 @@ const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices }) => {
       <img src={getIconSrc(item.emergencyType)} alt="icon" />
       <div>{item.summary}</div>
       {showMessages && (
-        <div className="emergency-messages-dropdown">
+        <div className="emergency-messages-dropdown" ref={messagesDropdownRef}>
           <div className="emergency-messages-list">
             {messages.length === 0 ? (
               <div className="emergency-message-empty">No messages.</div>
