@@ -20,6 +20,11 @@ function App() {
       .then(res => res.json())
       .then(data => setRescueServices(data));
 
+    // Fetch initial emergency items
+    fetch(`${SERVER_URL}/init`)
+      .then(res => res.json())
+      .then(data => setEmergencyItems(data));
+
     socketRef.current = new WebSocket(WS_URL);
     socketRef.current.onmessage = (event) => {
       const msg = JSON.parse(event.data);
