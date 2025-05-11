@@ -6,13 +6,7 @@ const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices }) => {
   const [showMessages, setShowMessages] = useState(false);
   const messagesDropdownRef = useRef(null);
   // Placeholder messages for demonstration
-  const messages = item.messages && Array.isArray(item.messages) && item.messages.length > 0
-    ? item.messages
-    : [
-        { id: 1, user: "System", timestamp: new Date().toISOString(), message: "First responder en route." },
-        { id: 2, user: "System", timestamp: new Date().toISOString(), message: "Situation under control." },
-        { id: 3, user: "System", timestamp: new Date().toISOString(), message: "Awaiting backup." }
-      ];
+  const messages = item.messages && Array.isArray(item.messages) && item.messages.length > 0 && item.messages
   const formatTime = (iso) => {
     const d = new Date(iso);
     return d.toLocaleString();
@@ -36,8 +30,8 @@ const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices }) => {
         border: '3px solid',
         borderColor:
           item.urgency === 'very high' ? '#e53935' :
-          item.urgency === 'high' ? '#ffb300' :
-          item.urgency === 'low' ? '#43a047' : '#ccc',
+            item.urgency === 'high' ? '#ffb300' :
+              item.urgency === 'low' ? '#43a047' : '#ccc',
         borderRadius: 12,
         position: 'relative',
       }}
@@ -50,8 +44,8 @@ const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices }) => {
           right: 10,
           background:
             item.urgency === 'very high' ? '#e53935' :
-            item.urgency === 'high' ? '#ffb300' :
-            item.urgency === 'low' ? '#43a047' : '#ccc',
+              item.urgency === 'high' ? '#ffb300' :
+                item.urgency === 'low' ? '#43a047' : '#ccc',
           color: '#fff',
           fontWeight: 700,
           fontSize: '0.95em',
