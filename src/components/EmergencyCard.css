@@ -14,7 +14,8 @@
   position: relative;
 }
 
-.emergency-item:hover {
+.emergency-item:hover,
+.emergency-item.messages-open {
   transform: translateY(-2px) scale(1.025);
   box-shadow: 0 8px 32px 0 rgba(0,0,0,0.16), 0 2px 8px 0 rgba(0,0,0,0.08);
   border-color: #0078ff33;

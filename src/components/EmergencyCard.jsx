@@ -25,7 +25,7 @@ const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices }) => {
   }, [showMessages]);
   return (
     <div
-      className={`emergency-item`}
+      className={`emergency-item${showMessages ? ' messages-open' : ''}`}
       style={{
         border: '3px solid',
         borderColor:
