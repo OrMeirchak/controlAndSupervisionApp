@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "./EmergencyCard.css";
 import { ICONS } from "../constants";
 
-const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices }) => {
+const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices, sendWhatsappFromClient }) => {
   const [showMessages, setShowMessages] = useState(false);
   const messagesDropdownRef = useRef(null);
   // Placeholder messages for demonstration
@@ -11,11 +11,17 @@ const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices }) => {
     const d = new Date(iso);
     return d.toLocaleString();
   };
+  const [chatOpenIdx, setChatOpenIdx] = useState(null);
+  const [chatMessage, setChatMessage] = useState("");
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState(null);
+
   useEffect(() => {
     if (!showMessages) return;
     function handleClickOutside(event) {
       if (messagesDropdownRef.current && !messagesDropdownRef.current.contains(event.target)) {
         setShowMessages(false);
+        setChatOpenIdx(null);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -89,6 +95,59 @@ const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices }) => {
                   <div style={{ fontWeight: 600, fontSize: '0.97em', color: '#1976d2' }}>{msg.user || 'Unknown'}</div>
                   <div style={{ fontSize: '0.85em', color: '#888' }}>{formatTime(msg.timestamp)}</div>
                   <div style={{ marginTop: 2 }}>{msg.message || msg.text}</div>
+                  <button
+                    style={{ marginTop: 6, fontSize: '0.9em', padding: '2px 8px', borderRadius: 6, border: '1px solid #1976d2', background: '#fff', color: '#1976d2', cursor: 'pointer' }}
+                    onClick={() => {
+                      setChatOpenIdx(idx);
+                      setChatMessage("");
+                      setSendError(null);
+                    }}
+                  >
+                    שלח הודעה
+                  </button>
+                  {chatOpenIdx === idx && (
+                    <div style={{ marginTop: 8, background: '#f5f5f5', padding: 8, borderRadius: 8 }}>
+                      <textarea
+                        style={{ width: '100%', minHeight: 40, borderRadius: 4, border: '1px solid #ccc', padding: 4 }}
+                        value={chatMessage}
+                        onChange={e => setChatMessage(e.target.value)}
+                        placeholder="הקלד הודעה..."
+                        disabled={sending}
+                      />
+                      <div style={{ display: 'flex', gap: 8, marginTop: 4 }}>
+                        <button
+                          style={{ background: '#1976d2', color: '#fff', border: 'none', borderRadius: 6, padding: '4px 12px', cursor: 'pointer' }}
+                          disabled={sending || !chatMessage.trim()}
+                          onClick={async () => {
+                            setSending(true);
+                            setSendError(null);
+                            try {
+                              // You may want to get the phone number from msg or item
+                              const phoneNumber = msg.user || item.user || '';
+                              if (!phoneNumber) throw new Error('לא נמצא מספר טלפון');
+                              await sendWhatsappFromClient(phoneNumber, chatMessage);
+                              setChatMessage("");
+                              setChatOpenIdx(null);
+                            } catch (err) {
+                              setSendError(err.message || 'שגיאה בשליחת הודעה');
+                            } finally {
+                              setSending(false);
+                            }
+                          }}
+                        >
+                          שלח
+                        </button>
+                        <button
+                          style={{ background: '#eee', color: '#333', border: 'none', borderRadius: 6, padding: '4px 12px', cursor: 'pointer' }}
+                          onClick={() => setChatOpenIdx(null)}
+                          disabled={sending}
+                        >
+                          ביטול
+                        </button>
+                      </div>
+                      {sendError && <div style={{ color: 'red', marginTop: 4 }}>{sendError}</div>}
+                    </div>
+                  )}
                 </div>
               ))
             )}

@@ -2,7 +2,7 @@ import React from "react";
 import EmergencyCard from "./EmergencyCard";
 import "./EmergencySidebar.css";
 
-const EmergencySidebar = ({ items, onCardClick, getIconSrc, rescueServices }) => (
+const EmergencySidebar = ({ items, onCardClick, getIconSrc, rescueServices, sendWhatsappFromClient }) => (
   <div className="sidebar emergency-bar">
     {items.map(item => (
       <EmergencyCard
@@ -11,6 +11,7 @@ const EmergencySidebar = ({ items, onCardClick, getIconSrc, rescueServices }) =>
         onClick={() => onCardClick(item.location)}
         getIconSrc={getIconSrc}
         rescueServices={rescueServices}
+        sendWhatsappFromClient={sendWhatsappFromClient}
       />
     ))}
   </div>

@@ -17,7 +17,6 @@ function App() {
   const priorities = ["very high", "high", "low"];
 
   useEffect(() => {
-    sendWhatsappFromClient("972544465621@c.us", "Hello, this is a test message");
 
     fetch(`${SERVER_URL}/getRecuseServices`)
       .then(res => res.json())
@@ -84,6 +83,7 @@ function App() {
         }}
         getIconSrc={getIconSrc}
         rescueServices={rescueServices}
+        sendWhatsappFromClient={sendWhatsappFromClient}
       />
       <MapView
         center={[32.0853, 34.7818]}
