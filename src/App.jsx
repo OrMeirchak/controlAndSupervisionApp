@@ -5,6 +5,7 @@ import EmergencySidebar from "./components/EmergencySidebar";
 import EmergencyModal from "./components/EmergencyModal";
 import MapView from "./components/MapView";
 import { SERVER_URL, WS_URL, ICONS } from "./constants";
+import { sendWhatsappFromClient } from "./utils/whatsApp-utils";
 
 function App() {
   const [rescueServices, setRescueServices] = useState([]);
@@ -16,6 +17,8 @@ function App() {
   const priorities = ["very high", "high", "low"];
 
   useEffect(() => {
+    sendWhatsappFromClient("972544465621@c.us", "Hello, this is a test message");
+
     fetch(`${SERVER_URL}/getRecuseServices`)
       .then(res => res.json())
       .then(data => setRescueServices(data));
