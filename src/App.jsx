@@ -14,7 +14,7 @@ function App() {
   const [focusedLocation, setFocusedLocation] = useState(null);
   const [showAllEmergencies, setShowAllEmergencies] = useState(false);
   const socketRef = useRef(null);
-  const priorities = ["very high", "high", "low"];
+  const priorities = ["low", "medium", "high", "very high"];
 
   useEffect(() => {
 
@@ -52,7 +52,7 @@ function App() {
   const sortedEmergencyItems = [...emergencyItems].sort((a, b) => {
     const aUrgency = priorities.indexOf(a.urgency);
     const bUrgency = priorities.indexOf(b.urgency);
-    return aUrgency - bUrgency;
+    return bUrgency - aUrgency;
   });
 
   const getIconSrc = (type) => ICONS[type] || "";

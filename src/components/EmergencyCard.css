@@ -111,6 +111,41 @@
   box-shadow: 0 1px 4px 0 rgba(0,0,0,0.10);
 }
 
+/* Popup overlay for messages */
+.emergency-messages-popup-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emergency-messages-popup {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+  padding: 24px 16px 16px 16px;
+  min-width: 320px;
+  max-width: 95vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.emergency-messages-popup-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: #888;
+  cursor: pointer;
+}
+
+/* Old dropdown style (no longer used)
 .emergency-messages-dropdown {
   position: absolute;
   top: 48px;
@@ -124,6 +159,7 @@
   max-width: 320px;
   padding: 8px 0;
 }
+*/
 
 .emergency-messages-list {
   max-height: 180px;
