@@ -7,7 +7,7 @@ import MapView from "./components/MapView";
 import UrgencyLevels from "./components/UrgencyLevels";
 import { SERVER_URL, WS_URL, ICONS } from "./constants";
 import { sendWhatsappFromClient } from "./utils/whatsApp-utils";
-
+import { msgAdapter } from "./adapter/items-adapter";
 function App() {
   const [rescueServices, setRescueServices] = useState([]);
   const [emergencyItems, setEmergencyItems] = useState([]);
@@ -36,11 +36,11 @@ function App() {
 
     fetch(`${SERVER_URL}/init`)
       .then(res => res.json())
-      .then(data => setEmergencyItems(data));
+      .then(data => setEmergencyItems(data.map(msg => msgAdapter(msg))));
 
     socketRef.current = new WebSocket(WS_URL);
     socketRef.current.onmessage = (event) => {
-      const msg = JSON.parse(event.data);
+      const msg = msgAdapter(JSON.parse(event.data));
       if (msg.type === "create emergency") {
         setEmergencyItems(prev => [msg, ...prev.filter(item => item.id !== msg.id)]);
       } else if (msg.type === "edit emergency") {
@@ -89,11 +89,11 @@ function App() {
 
   return (
     <div className="app">
-      <AppHeader 
-        onAllEmergency={() => setShowAllEmergencies(true)} 
+      <AppHeader
+        onAllEmergency={() => setShowAllEmergencies(true)}
         onClearAll={clearAllEmergencies}
       />
-      <UrgencyLevels 
+      <UrgencyLevels
         minimizedItems={minimizedItems}
         onRestoreItem={handleRestoreItem}
       />
