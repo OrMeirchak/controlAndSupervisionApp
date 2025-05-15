@@ -48,9 +48,9 @@ const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices, sendWhatsapp
       style={{
         border: '3px solid',
         borderColor:
-          item.urgency === 'very high' ? '#e53935' :
-            item.urgency === 'high' ? '#ffb300' :
-              item.urgency === 'low' ? '#43a047' : '#ccc',
+          item.severity === 'very high' ? '#e53935' :
+            item.severity === 'high' ? '#ffb300' :
+              item.severity === 'low' ? '#43a047' : '#ccc',
         borderRadius: 12,
         position: 'relative',
       }}
@@ -62,9 +62,9 @@ const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices, sendWhatsapp
           bottom: 10,
           right: 10,
           background:
-            item.urgency === 'very high' ? '#e53935' :
-              item.urgency === 'high' ? '#ffb300' :
-                item.urgency === 'low' ? '#43a047' : '#ccc',
+            item.severity === 'very high' ? '#e53935' :
+              item.severity === 'high' ? '#ffb300' :
+                item.severity === 'low' ? '#43a047' : '#ccc',
           color: '#fff',
           fontWeight: 700,
           fontSize: '0.95em',
@@ -74,7 +74,7 @@ const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices, sendWhatsapp
           boxShadow: '0 1px 4px rgba(0,0,0,0.08)'
         }}
       >
-        {item.urgency ? item.urgency : 'No urgency'}
+        {item.severity ? item.severity : 'No urgency'}
       </div>
       <div style={{ position: "absolute", top: 10, right: 10, display: "flex", gap: 8, zIndex: 3 }}>
         <button

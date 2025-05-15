@@ -62,7 +62,7 @@ function App() {
     .filter(item => !minimizedItems.find(min => min.id === item.id))
     .sort((a, b) => {
       const priorities = ["very high", "high", "medium", "low"];
-      return priorities.indexOf(a.urgency) - priorities.indexOf(b.urgency);
+      return priorities.indexOf(a.severity) - priorities.indexOf(b.severity);
     });
 
   const handleMinimize = (item) => {
