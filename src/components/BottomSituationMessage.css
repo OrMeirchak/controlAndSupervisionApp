@@ -10,7 +10,7 @@
   color: #fff;
   font-size: 1.18rem;
   font-weight: 500;
-  padding: 18px 32px;
+  padding: 18px 32px 18px 32px;
   text-align: center;
   box-shadow: 0 -4px 24px 0 rgba(0,0,0,0.18);
   border-top: 1.5px solid rgba(255,255,255,0.12);
@@ -19,13 +19,37 @@
   user-select: text;
   overflow-y: auto;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.resize-handle {
+  width: 100%;
+  height: 18px;
+  cursor: ns-resize;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  margin-bottom: 4px;
+  user-select: none;
+}
+
+.resize-bar {
+  width: 48px;
+  height: 5px;
+  border-radius: 3px;
+  background: #aaa;
+  opacity: 0.5;
 }
 
 @media (max-width: 600px) {
   .bottom-situation-message {
     font-size: 1rem;
-    padding: 12px 8px;
+    padding: 12px 8px 12px 8px;
+  }
+  .resize-bar {
+    width: 32px;
+    height: 4px;
   }
 } 
