@@ -1,5 +1,5 @@
 export const msgAdapter = (msg) => {
-  if(!msg.coordinates){
+  if(!msg.coordinates || !msg.coordinates.lat || !msg.coordinates.lon){
     return msg;
   }
   return {
