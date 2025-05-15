@@ -5,7 +5,7 @@ import { ICONS } from "../constants";
 const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices, sendWhatsappFromClient, onMinimize }) => {
   const [showMessages, setShowMessages] = useState(false);
   const messagesDropdownRef = useRef(null);
-  const messages = item.messages && Array.isArray(item.messages) && item.messages.length > 0 && item.messages;
+  const message = typeof item.message === 'string' ? item.message : '';
   
   const formatTime = (iso) => {
     const d = new Date(iso);
@@ -89,10 +89,10 @@ const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices, sendWhatsapp
           className="emergency-action-btn"
           style={{ background: "none", border: "none", padding: 0, cursor: "pointer", position: "relative" }}
           onClick={e => { e.stopPropagation(); setShowMessages(v => !v); }}
-          aria-label="Show messages"
+          aria-label="Show message"
         >
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-          {messages && messages.length > 0 && (
+          {message && (
             <div style={{
               position: 'absolute',
               top: -8,
@@ -110,7 +110,7 @@ const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices, sendWhatsapp
               border: '2px solid rgba(0,0,0,0.75)',
               boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
             }}>
-              {messages.length}
+              1
             </div>
           )}
         </button>
@@ -132,79 +132,64 @@ const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices, sendWhatsapp
           <div className="emergency-messages-popup" ref={messagesDropdownRef}>
             <button
               className="emergency-messages-popup-close"
-              onClick={() => { setShowMessages(false); setChatOpenIdx(null); }}
+              onClick={() => { setShowMessages(false); }}
             >
               ✕
             </button>
             <div className="emergency-messages-list">
-              {messages.length === 0 ? (
-                <div className="emergency-message-empty">No messages.</div>
+              {!message ? (
+                <div className="emergency-message-empty">No message.</div>
               ) : (
-                messages.map((msg, idx) => (
-                  <div key={msg.id || idx} className="emergency-message-item">
-                    <div style={{ fontWeight: 600, fontSize: '0.97em', color: '#1976d2' }}>
-                      {formatPhoneNumber(msg.user) || 'Unknown'}
-                    </div>
-                    <div style={{ fontSize: '0.85em', color: '#888' }}>{formatTime(msg.timestamp)}</div>
-                    <div style={{ marginTop: 2 }}>
-                      {((msg.message || msg.text || '').toLowerCase().includes('latitude') && (msg.message || msg.text || '').toLowerCase().includes('longitude'))
-                        ? 'התקבל מיקום'
-                        : (msg.message || msg.text)}
-                    </div>
-                    <button
-                      style={{ marginTop: 6, fontSize: '0.9em', padding: '2px 8px', borderRadius: 6, border: '1px solid #1976d2', background: '#fff', color: '#1976d2', cursor: 'pointer' }}
-                      onClick={() => {
-                        setChatOpenIdx(idx);
-                        setChatMessage("");
-                        setSendError(null);
-                      }}
-                    >
-                      שלח הודעה
-                    </button>
-                    {chatOpenIdx === idx && (
-                      <div style={{ marginTop: 8, background: '#f5f5f5', padding: 8, borderRadius: 8 }}>
-                        <textarea
-                          style={{ width: '100%', minHeight: 40, borderRadius: 4, border: '1px solid #ccc', padding: 4 }}
-                          value={chatMessage}
-                          onChange={e => setChatMessage(e.target.value)}
-                          placeholder="הקלד הודעה..."
-                          disabled={sending}
-                        />
-                        <div style={{ display: 'flex', gap: 8, marginTop: 4 }}>
-                          <button
-                            style={{ background: '#1976d2', color: '#fff', border: 'none', borderRadius: 6, padding: '4px 12px', cursor: 'pointer' }}
-                            disabled={sending || !chatMessage.trim()}
-                            onClick={async () => {
-                              setSending(true);
-                              setSendError(null);
-                              try {
-                                const phoneNumber = msg.user || item.user || '';
-                                if (!phoneNumber) throw new Error('לא נמצא מספר טלפון');
-                                await sendWhatsappFromClient(phoneNumber, chatMessage);
-                                setChatMessage("");
-                                setChatOpenIdx(null);
-                              } catch (err) {
-                                setSendError(err.message || 'שגיאה בשליחת הודעה');
-                              } finally {
-                                setSending(false);
-                              }
-                            }}
-                          >
-                            שלח
-                          </button>
-                          <button
-                            style={{ background: '#eee', color: '#333', border: 'none', borderRadius: 6, padding: '4px 12px', cursor: 'pointer' }}
-                            onClick={() => setChatOpenIdx(null)}
-                            disabled={sending}
-                          >
-                            ביטול
-                          </button>
-                        </div>
-                        {sendError && <div style={{ color: 'red', marginTop: 4 }}>{sendError}</div>}
-                      </div>
-                    )}
+                <div className="emergency-message-item">
+                  <div style={{ fontWeight: 600, fontSize: '0.97em', color: '#1976d2' }}>
+                    {item.user ? formatPhoneNumber(item.user) : 'Unknown'}
                   </div>
-                ))
+                  <div style={{ fontSize: '0.85em', color: '#888' }}>{item.timestamp ? formatTime(item.timestamp) : ''}</div>
+                  <div style={{ marginTop: 2 }}>
+                    {(message.toLowerCase().includes('latitude') && message.toLowerCase().includes('longitude'))
+                      ? 'התקבל מיקום'
+                      : message}
+                  </div>
+                  <div style={{ marginTop: 8, background: '#f5f5f5', padding: 8, borderRadius: 8 }}>
+                    <textarea
+                      style={{ width: '100%', minHeight: 40, borderRadius: 4, border: '1px solid #ccc', padding: 4 }}
+                      value={chatMessage}
+                      onChange={e => setChatMessage(e.target.value)}
+                      placeholder="הקלד הודעה..."
+                      disabled={sending}
+                    />
+                    <div style={{ display: 'flex', gap: 8, marginTop: 4 }}>
+                      <button
+                        style={{ background: '#1976d2', color: '#fff', border: 'none', borderRadius: 6, padding: '4px 12px', cursor: 'pointer' }}
+                        disabled={sending || !chatMessage.trim()}
+                        onClick={async () => {
+                          setSending(true);
+                          setSendError(null);
+                          try {
+                            const phoneNumber = item.user || '';
+                            if (!phoneNumber) throw new Error('לא נמצא מספר טלפון');
+                            await sendWhatsappFromClient(phoneNumber, chatMessage);
+                            setChatMessage("");
+                          } catch (err) {
+                            setSendError(err.message || 'שגיאה בשליחת הודעה');
+                          } finally {
+                            setSending(false);
+                          }
+                        }}
+                      >
+                        שלח
+                      </button>
+                      <button
+                        style={{ background: '#eee', color: '#333', border: 'none', borderRadius: 6, padding: '4px 12px', cursor: 'pointer' }}
+                        onClick={() => setChatMessage("")}
+                        disabled={sending}
+                      >
+                        ביטול
+                      </button>
+                    </div>
+                    {sendError && <div style={{ color: 'red', marginTop: 4 }}>{sendError}</div>}
+                  </div>
+                </div>
               )}
             </div>
           </div>
