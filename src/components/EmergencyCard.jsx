@@ -125,7 +125,7 @@ const EmergencyCard = ({ item, onClick, getIconSrc, rescueServices, sendWhatsapp
           </svg>
         </button>
       </div>
-      <img src={getIconSrc(item.emergencyType)} alt="icon" />
+      <img src={getIconSrc(item.emergency_type)} alt="icon" />
       <div>{item.summary}</div>
       {showMessages && (
         <div className="emergency-messages-popup-overlay">

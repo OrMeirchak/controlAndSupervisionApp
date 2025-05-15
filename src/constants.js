@@ -2,12 +2,12 @@ export const SERVER_URL = "http://localhost:4000";
 export const WS_URL = "ws://localhost:4000";
 
 export const ICONS = {
-  murder: "/icons/murder.svg",
-  accident: "/icons/accident.svg",
-  "terror attack": "/icons/terror-attack.svg",
-  robbery: "/icons/robbery.svg",
-  "medical emergency": "/icons/medical-emergency.svg",
-  app: "/icons/app.jpg",
+  Murder: "/icons/murder.svg",
+  Accident: "/icons/accident.svg",
+  "Terror Attack": "/icons/terror-attack.svg",
+  Robbery: "/icons/robbery.svg",
+  "Medical Emergency": "/icons/medical-emergency.svg",
+  app: "/icos/app.jpg",
   goToLoaction:"/icons/go-to-location.svg",
   fire: "/icons/fire.svg",
   earthquake: "/icons/earthquake.svg",

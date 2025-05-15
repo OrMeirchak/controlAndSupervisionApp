@@ -25,9 +25,9 @@ const EmergencyModal = ({ open, onClose, emergencyItems, getIconSrc, rescueServi
                 >
                   <img src={ICONS.goToLoaction} alt="action icon" style={{ width: 28, height: 28 }} />
                 </button>
-                <img src={getIconSrc(item.emergencyType)} alt="icon" />
+                <img src={getIconSrc(item.emergency_type)} alt="icon" />
                 <div>
-                  <div className="modal-item-type">{item.emergencyType}</div>
+                  <div className="modal-item-type">{item.emergency_type}</div>
                   <div className="modal-item-summary">{item.summary}</div>
                   <div className="dispatched">
                     {(item.emergency_services || []).map(serviceName => {
