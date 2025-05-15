@@ -8,6 +8,8 @@ import UrgencyLevels from "./components/UrgencyLevels";
 import { SERVER_URL, WS_URL, ICONS } from "./constants";
 import { sendWhatsappFromClient } from "./utils/whatsApp-utils";
 import { msgAdapter } from "./adapter/items-adapter";
+import BottomSituationMessage from "./components/BottomSituationMessage";
+
 function App() {
   const [rescueServices, setRescueServices] = useState([]);
   const [emergencyItems, setEmergencyItems] = useState([]);
@@ -126,6 +128,7 @@ function App() {
         focusedLocation={focusedLocation}
         getIcon={getIcon}
       />
+      <BottomSituationMessage />
     </div>
   );
 }

@@ -1,0 +1,31 @@
+.bottom-situation-message {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 12vh;
+  max-height: 12vh;
+  z-index: 2500;
+  background: rgba(30, 30, 30, 0.92);
+  color: #fff;
+  font-size: 1.18rem;
+  font-weight: 500;
+  padding: 18px 32px;
+  text-align: center;
+  box-shadow: 0 -4px 24px 0 rgba(0,0,0,0.18);
+  border-top: 1.5px solid rgba(255,255,255,0.12);
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  pointer-events: auto;
+  user-select: text;
+  overflow-y: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .bottom-situation-message {
+    font-size: 1rem;
+    padding: 12px 8px;
+  }
+} 
