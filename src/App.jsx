@@ -80,13 +80,7 @@ function App() {
   const getIconSrc = (type) => ICONS[type] || "";
   const getIcon = (type) => {
     const src = getIconSrc(type);
-    const hebrewTitle = emergencyTypeHebrew[type] || type;
-    return `
-      <div style="display:flex;flex-direction:column;align-items:center;">
-        ${src ? `<img src='${src}' style='width:32px;height:32px;margin-bottom:4px;'/>` : ""}
-        <div style="background:rgba(30,30,30,0.92);color:#fff;padding:4px 12px;border-radius:8px;font-size:15px;font-weight:bold;text-align:center;max-width:120px;">${hebrewTitle}</div>
-      </div>
-    `;
+    return src ? `<img src='${src}' style='width:32px;height:32px;'/>` : "";
   };
 
   return (
