@@ -1,5 +1,5 @@
-export const SERVER_URL = "http://localhost:3001";
-export const WS_URL = "ws://localhost:3001";
+export const SERVER_URL = "http://localhost:4000";
+export const WS_URL = "ws://localhost:4000";
 
 export const ICONS = {
   murder: "/icons/murder.svg",
@@ -15,4 +15,4 @@ export const ICONS = {
   military: "/icons/rescue-services/soldier.svg",
   ambulance: "/icons/rescue-services/ambulance.svg",
   police: "/icons/rescue-services/policeman.svg"
-}; 
+};

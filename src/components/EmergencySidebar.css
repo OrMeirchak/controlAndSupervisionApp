@@ -1,10 +1,42 @@
 .sidebar.emergency-bar {
   position: fixed;
-  left: 0;
+  left: 48px;
   top: 72px;
   height: calc(100% - 72px);
-  width: 320px;
-  z-index: 1000;
-  padding: 24px 16px;
+  width: 280px;
+  z-index: 2000;
+  padding: 16px 8px;
   font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-} 
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding-right: 12px;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.sidebar.emergency-bar.empty {
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Webkit scrollbar styling */
+.sidebar.emergency-bar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar.emergency-bar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar.emergency-bar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.sidebar.emergency-bar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}

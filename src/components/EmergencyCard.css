@@ -1,24 +1,26 @@
 .emergency-item {
-  background: rgba(255,255,255,0.85);
+  background: rgba(0, 0, 0, 0.08);
   border-radius: 18px;
   margin: 18px 0;
   padding: 18px 16px 14px 16px;
   box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10), 0 1.5px 4px 0 rgba(0,0,0,0.04);
   cursor: pointer;
   transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.18s;
-  border: 1.5px solid rgba(0,0,0,0.04);
+  border: 1.5px solid rgba(255,255,255,0.1);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
   position: relative;
+  color: #fff;
 }
 
 .emergency-item:hover,
 .emergency-item.messages-open {
   transform: translateY(-2px) scale(1.025);
   box-shadow: 0 8px 32px 0 rgba(0,0,0,0.16), 0 2px 8px 0 rgba(0,0,0,0.08);
-  border-color: #0078ff33;
+  border-color: rgba(255,255,255,0.2);
+  background: rgba(0, 0, 0, 0.15);
 }
 
 .emergency-item img {
@@ -31,8 +33,17 @@
 .emergency-item > div:first-of-type {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #222;
+  color: #fff;
   margin-bottom: 2px;
+}
+
+.emergency-item div {
+  color: #fff;
+}
+
+.emergency-item .modal-item-type,
+.emergency-item .modal-item-summary {
+  color: #fff;
 }
 
 .siren-flicker {
@@ -113,25 +124,27 @@
 
 /* Popup overlay for messages */
 .emergency-messages-popup-overlay {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.35);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  margin: 10px 0;
+  width: 100%;
+  background: transparent;
+  display: none;
 }
 
 .emergency-messages-popup {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
-  padding: 24px 16px 16px 16px;
-  min-width: 320px;
-  max-width: 95vw;
-  max-height: 80vh;
-  overflow-y: auto;
   position: relative;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.1);
+  user-select: none;
+  margin-top: 10px;
+}
+
+.emergency-item.messages-open .emergency-messages-popup-overlay {
+  display: block;
 }
 
 .emergency-messages-popup-close {
@@ -141,46 +154,38 @@
   background: none;
   border: none;
   font-size: 1.5em;
-  color: #888;
+  color: #fff;
   cursor: pointer;
 }
 
-/* Old dropdown style (no longer used)
-.emergency-messages-dropdown {
-  position: absolute;
-  top: 48px;
-  right: 10px;
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.10);
-  z-index: 10;
-  min-width: 220px;
-  max-width: 320px;
-  padding: 8px 0;
-}
-*/
-
 .emergency-messages-list {
-  max-height: 180px;
+  max-height: 300px;
   overflow-y: auto;
-  padding: 0 12px;
+  padding: 16px;
 }
 
 .emergency-message-item {
   padding: 8px 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   font-size: 0.98rem;
-  color: #333;
+  color: #fff;
 }
 
 .emergency-message-item:last-child {
   border-bottom: none;
 }
 
+.emergency-message-item div {
+  color: #fff;
+}
+
 .emergency-message-empty {
-  color: #888;
+  color: rgba(255,255,255,0.6);
   text-align: center;
   padding: 16px 0;
   font-size: 0.97rem;
-} 
+}
+
+.emergency-action-btn svg {
+  stroke: #fff;
+}

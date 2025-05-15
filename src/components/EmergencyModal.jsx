@@ -30,7 +30,7 @@ const EmergencyModal = ({ open, onClose, emergencyItems, getIconSrc, rescueServi
                   <div className="modal-item-type">{item.emergencyType}</div>
                   <div className="modal-item-summary">{item.summary}</div>
                   <div className="dispatched">
-                    {(item.recuseServices || []).map(serviceName => {
+                    {(item.emergency_services || []).map(serviceName => {
                       const service = rescueServices.find(s => s.name === serviceName);
                       if (!service) return null;
                       const iconKey = service.name.toLowerCase();
