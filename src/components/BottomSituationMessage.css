@@ -8,7 +8,7 @@
   z-index: 2500;
   background: rgba(30, 30, 30, 0.92);
   color: #fff;
-  font-size: 1.18rem;
+  font-size: 0.95rem;
   font-weight: 500;
   padding: 18px 32px 18px 32px;
   text-align: center;
@@ -45,7 +45,7 @@
 
 @media (max-width: 600px) {
   .bottom-situation-message {
-    font-size: 1rem;
+    font-size: 0.82rem;
     padding: 12px 8px 12px 8px;
   }
   .resize-bar {
